@@ -44,12 +44,16 @@ function Accordion({ data }) {
 function AccordionItem({ number, title, text }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  function handleToggle() {
+    setIsOpen(!isOpen);
+  }
+
   return (
-    <div className="item">
+    <div className="item" onClick={handleToggle}>
       <p className="number">{number < 9 ? `0${number + 1}` : number + 1}</p>
       <p className="text">{title}</p>
-      <p className="icon">-</p>
-      <div className="content-box">{text}</div>
+      <p className="icon">{isOpen ? "-" : "+"}</p>
+      {isOpen && <div className="content-box">{text}</div>}
     </div>
   );
 }
